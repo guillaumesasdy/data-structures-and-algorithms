@@ -1,10 +1,29 @@
+using System;
+
 namespace CrackingCodeInterview.ArraysAndStrings
 {
     public class ArraysStrings
     {
         static void Main()
         {
+            bool isUniquePassing = IsUniqueTests();
+            Console.WriteLine($"{nameof(IsUnique)} tests returns: {isUniquePassing}");
+        }
 
+        private static bool IsUniqueTests()
+        {
+            string allTheSame = "aaaaaaa";
+            bool allTheSameExpectedReturn = false;
+
+            string allDifferent = "abcxyz";
+            bool allDifferentExpectedReturn = true;
+
+            string beginEndWithSame = ".azerty.";
+            bool beginEndWithSameExpectedReturn = false;
+
+            return IsUnique(allTheSame) == allTheSameExpectedReturn
+                && IsUnique(allDifferent) == allDifferentExpectedReturn
+                && IsUnique(beginEndWithSame) == beginEndWithSameExpectedReturn;
         }
 
         private static bool IsUnique(string s)
