@@ -41,7 +41,23 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
         private static bool IsUniqueAscii(string s)
         {
-            throw new NotImplementedException();
+            var bitsAlreadySeen = new byte[16];
+
+            for(int i=0; i<s.Count; i++)
+            {
+                var searched = (byte) s.CharAt(i);
+
+                byte indexLookup = Math.Floor(searched / 8);
+                // todo do we have something faster than Math.Floor?
+                byte bitLookup = 1 << (searched % 8);
+
+                if (bitsAlreadySeen[indexLookup] == bitLookup)
+                    return false;
+                
+                bitsAlreadySeenSeen |= bitLookup;
+            }
+
+            return true;
         }
 
         private static bool IsUniqueTests(Func<string, bool> tested)
