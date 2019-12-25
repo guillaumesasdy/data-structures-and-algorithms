@@ -6,11 +6,14 @@ namespace CrackingCodeInterview.ArraysAndStrings
     {
         static void Main()
         {
-            bool isUniquePassing = IsUniqueTests();
+            bool isUniquePassing = IsUniqueTests(IsUnique);
             Console.WriteLine($"{nameof(IsUnique)} tests returns: {isUniquePassing}");
+
+            bool isUniqueAsciiPassing = IsUniqueAsciiTests(IsUniqueAscii);
+            Console.WriteLine($"{nameof(IsUniqueAscii)} tests returns: {isUniqueAsciiPassing}");
         }
 
-        private static bool IsUniqueTests()
+        private static bool IsUniqueAsciiTests(Func<string, bool> tested)
         {
             string allTheSame = "aaaaaaa";
             bool allTheSameExpectedReturn = false;
@@ -21,9 +24,31 @@ namespace CrackingCodeInterview.ArraysAndStrings
             string beginEndWithSame = ".azerty.";
             bool beginEndWithSameExpectedReturn = false;
 
-            return IsUnique(allTheSame) == allTheSameExpectedReturn
-                && IsUnique(allDifferent) == allDifferentExpectedReturn
-                && IsUnique(beginEndWithSame) == beginEndWithSameExpectedReturn;
+            string allDifferentWithNonAlphaNumericalCharacters = string.Join("", new char[] { '\x0F', '\x0C'}) + "az";
+            bool allDifferentWithNonAlphaNumericalCharactersExpectedReturn = true;
+
+            string duplicatedNonAlphaNumericalCharacters = string.Join("", new char[] { '\x0F', '\x0C', '\x0F'}) + "az";
+            bool duplicatedNonAlphaNumericalCharactersExpectedReturn = false;
+
+            return tested(allTheSame) == allTheSameExpectedReturn
+                && tested(allDifferent) == allDifferentExpectedReturn
+                && tested(beginEndWithSame) == beginEndWithSameExpectedReturn
+                && tested(allDifferentWithNonAlphaNumericalCharacters) 
+                    == allDifferentWithNonAlphaNumericalCharactersExpectedReturn
+                && tested(duplicatedNonAlphaNumericalCharacters)
+                    == duplicatedNonAlphaNumericalCharactersExpectedReturn;
+        }
+
+        private static bool IsUniqueAscii(string s)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static bool IsUniqueTests(Func<string, bool> tested)
+        {
+            // todo add tests with characters outside ASCII
+
+            return IsUniqueAsciiTests(tested);
         }
 
         private static bool IsUnique(string s)
