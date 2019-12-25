@@ -41,20 +41,19 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
         private static bool IsUniqueAscii(string s)
         {
-            var bitsAlreadySeen = new byte[16];
+            byte[] bitsAlreadySeen = new byte[16];
 
-            for(int i=0; i<s.Count; i++)
+            for(int i=0; i<s.Length; i++)
             {
-                var searched = (byte) s.CharAt(i);
+                var searched = (byte) s[i];
 
-                byte indexLookup = Math.Floor(searched / 8);
-                // todo do we have something faster than Math.Floor?
-                byte bitLookup = 1 << (searched % 8);
+                byte indexLookup = (byte) (searched / 8);
+                byte bitLookup = (byte) (1 << (searched % 8));
 
                 if (bitsAlreadySeen[indexLookup] == bitLookup)
                     return false;
                 
-                bitsAlreadySeenSeen |= bitLookup;
+                bitsAlreadySeen[indexLookup] |= bitLookup;
             }
 
             return true;
