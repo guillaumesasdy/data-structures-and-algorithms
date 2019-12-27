@@ -4,13 +4,15 @@ namespace CrackingCodeInterview.ArraysAndStrings
 {
     public class ArraysStrings
     {
+        static readonly int NbAsciiChars = 128;
+
         static void Main()
         {
-            bool isUniquePassing = IsUniqueTests(IsUnique);
-            Console.WriteLine($"{nameof(IsUnique)} tests returns: {isUniquePassing}");
+            bool isUniqueAsciiWithArrayOfBoolsPassing = IsUniqueAsciiTests(IsUniqueAsciiWithArrayOfBools);
+            Console.WriteLine($"{nameof(IsUniqueAsciiWithArrayOfBools)} tests returns: {isUniqueAsciiWithArrayOfBoolsPassing}");
 
-            bool isUniqueAsciiPassing = IsUniqueAsciiTests(IsUniqueAscii);
-            Console.WriteLine($"{nameof(IsUniqueAscii)} tests returns: {isUniqueAsciiPassing}");
+            bool isUniqueAsciiWithArrayOfBytesPassing = IsUniqueAsciiTests(IsUniqueAsciiWithArrayOfBytes);
+            Console.WriteLine($"{nameof(IsUniqueAsciiWithArrayOfBytes)} tests returns: {isUniqueAsciiWithArrayOfBytesPassing}");
         }
 
         private static bool IsUniqueAsciiTests(Func<string, bool> tested)
@@ -39,43 +41,33 @@ namespace CrackingCodeInterview.ArraysAndStrings
                     == duplicatedNonAlphaNumericalCharactersExpectedReturn;
         }
 
-        private static bool IsUniqueAscii(string s)
+        private static bool IsUniqueAsciiWithArrayOfBytes(string s)
         {
-            byte[] bitsAlreadySeen = new byte[16];
+            byte[] seen = new byte[NbAsciiChars / 8];
 
             for(int i=0; i<s.Length; i++)
             {
-                var searched = (byte) s[i];
+                byte charIndex = (byte) s[i];
 
-                byte indexLookup = (byte) (searched / 8);
-                byte bitLookup = (byte) (1 << (searched % 8));
+                byte byteIndex = (byte) (charIndex / 8);
+                byte byteFlag = (byte) (1 << (charIndex % 8));
 
-                if (bitsAlreadySeen[indexLookup] == bitLookup)
+                if ((seen[byteIndex] & byteFlag) > 0)
                     return false;
                 
-                bitsAlreadySeen[indexLookup] |= bitLookup;
+                seen[byteIndex] |= byteFlag;
             }
 
             return true;
         }
 
-        private static bool IsUniqueTests(Func<string, bool> tested)
+        private static bool IsUniqueAsciiWithArrayOfBools(string s)
         {
-            // todo add tests with characters outside ASCII
+            bool[] seen = new bool[NbAsciiChars];
 
-            return IsUniqueAsciiTests(tested);
-        }
-
-        private static bool IsUnique(string s)
-        {
-            char[] chars = s.ToCharArray();
-            // todo check implementation details of ToCharArray() and its complexity
-
-            bool[] seen = new bool[char.MaxValue - char.MinValue];
-
-            for(int i=0; i<chars.Length; i++)
+            for(int i=0; i<s.Length; i++)
             {
-                int charIndex = (int) chars[i];
+                byte charIndex = (byte) s[i];
 
                 if (seen[charIndex])
                     return false;
