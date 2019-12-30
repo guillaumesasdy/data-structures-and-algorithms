@@ -49,7 +49,15 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
         static void URLifyInPlace(ref char[] chars)
         {
-            throw new NotImplementedException();
+            for(int i=0; i<chars.Length; i++)
+            if (chars[i] == ' ')
+            {
+                chars[i + 4] = chars[i + 2];
+                chars[i + 3] = chars[i + 1];
+                chars[i + 2] = '0';
+                chars[i + 1] = '2';
+                chars[i + 0] = '%';
+            }
         }
     }
 }
