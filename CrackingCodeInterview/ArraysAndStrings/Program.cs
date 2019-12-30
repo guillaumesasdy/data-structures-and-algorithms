@@ -48,6 +48,11 @@ namespace CrackingCodeInterview.ArraysAndStrings
                     explain = IsPermutationAscii.Explain;
                 break;
 
+                case "urlify":
+                    run = URLify.Run;
+                    explain = URLify.Explain;
+                break;
+
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
 
