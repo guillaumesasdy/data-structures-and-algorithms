@@ -43,6 +43,11 @@ namespace CrackingCodeInterview.ArraysAndStrings
                     explain = IsUniqueAscii.Explain;
                 break;
 
+                case "ispermutation":
+                    run = IsPermutationAscii.Run;
+                    explain = IsPermutationAscii.Explain;
+                break;
+
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
 
