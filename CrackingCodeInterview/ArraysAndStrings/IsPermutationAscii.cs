@@ -46,7 +46,24 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
         static bool IsPermutationAsciiWithArrayOfIntegers(string s1, string s2)
         {
-            throw new NotImplementedException();
+            if (s1 == null || s2 == null)
+                return false;
+
+            if (s1.Length != s2.Length)
+                return false;
+
+            int[] diffs = new int[NbAsciiChars];
+            for (int i=0; i<s1.Length; i++)
+            {
+                diffs[s1[i]]++;
+                diffs[s2[i]]--;
+            }
+
+            for(int i=0; i<diffs.Length; i++)
+            if (diffs[i] != 0)
+                return false;
+
+            return true;
         }
     }
 }
