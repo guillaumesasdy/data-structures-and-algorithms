@@ -15,21 +15,21 @@ namespace CrackingCodeInterview.ArraysAndStrings
         public static void Run()
         {
             bool isOneEditAwayPassing = Test();
-            Console.WriteLine($"{nameof(IsOneEditAwayPassing)} tests returns: {isOneEditAwayPassing}");
+            Console.WriteLine($"{nameof(IsOneEditAway)} tests returns: {isOneEditAwayPassing}");
         }
 
         private static bool Test()
         {
-            bool oneAddInMiddlePassing = IsOneEditAwayPassing(
+            bool oneAddInMiddlePassing = IsOneEditAway(
                 "pale", "ple") == true;
 
-            bool oneRemoveAtEndPassing = IsOneEditAwayPassing(
+            bool oneRemoveAtEndPassing = IsOneEditAway(
                 "pales", "pale") == true;
 
-            bool oneReplaceAtBegPassing = IsOneEditAwayPassing(
+            bool oneReplaceAtBegPassing = IsOneEditAway(
                 "bale", "pale") == true;
 
-            bool twoReplaceReturnsFalse = IsOneEditAwayPassing(
+            bool twoReplaceReturnsFalse = IsOneEditAway(
                 "pale", "bake") == false;
 
             return oneAddInMiddlePassing
@@ -38,9 +38,50 @@ namespace CrackingCodeInterview.ArraysAndStrings
                 && twoReplaceReturnsFalse;
         }
 
-        static bool IsOneEditAwayPassing(string s1, string s2)
+        static bool IsOneEditAway(string s1, string s2)
         {
-            throw new NotImplementedException();
+            if (Math.Abs(s1.Length - s2.Length) > 1)
+                return false;
+
+            bool editMustBeAdding = false;
+            
+            // swap s1 and s2 if s2 is shorter than s1 because
+            // we want to loop over the shortest string
+            if (s1.Length != s2.Length)
+            {
+                if (s2.Length < s1.Length)
+                {
+                    string tmp = s2;
+                    s2 = s1;
+                    s1 = tmp;
+                }
+
+                editMustBeAdding = true;
+            }
+
+            bool edited = false;
+            int i = 0, j = 0;
+            while (i < s1.Length)
+            {
+                if (s1[i] != s2[j])
+                {
+                    if (edited)
+                        return false;
+                    
+                    edited = true;
+                    
+                    if (editMustBeAdding)
+                    {
+                        j++;
+                        continue;
+                    }
+                }
+
+                i++;
+                j++;
+            }
+
+            return true;
         }
     }
 }
