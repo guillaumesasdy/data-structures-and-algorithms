@@ -48,6 +48,11 @@ namespace CrackingCodeInterview.ArraysAndStrings
                     explain = IsPermutationAscii.Explain;
                 break;
 
+                case "oneaway":
+                    run = OneAway.Run;
+                    explain = OneAway.Explain;
+                break;
+
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
 
