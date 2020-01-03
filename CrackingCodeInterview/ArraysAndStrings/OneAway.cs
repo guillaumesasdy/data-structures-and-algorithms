@@ -2,9 +2,9 @@ using System;
 
 namespace CrackingCodeInterview.ArraysAndStrings
 {
-    public class OneAway
+    public class OneAway : IExecutable
     {
-        public static void Explain()
+        public void Explain()
         {
             string s = "Find if a two strings are one edit away.";
             s += Environment.NewLine + "An edit may be adding, removing, replacing a character.";
@@ -12,13 +12,13 @@ namespace CrackingCodeInterview.ArraysAndStrings
             Console.WriteLine(s);
         }
 
-        public static void Run()
+        public void Run()
         {
             bool isOneEditAwayPassing = Test();
             Console.WriteLine($"{nameof(IsOneEditAway)} tests returns: {isOneEditAwayPassing}");
         }
 
-        private static bool Test()
+        bool Test()
         {
             bool oneAddInMiddlePassing = IsOneEditAway(
                 "pale", "ple") == true;
@@ -38,7 +38,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
                 && twoReplaceReturnsFalse;
         }
 
-        static bool IsOneEditAway(string s1, string s2)
+        bool IsOneEditAway(string s1, string s2)
         {
             if (Math.Abs(s1.Length - s2.Length) > 1)
                 return false;

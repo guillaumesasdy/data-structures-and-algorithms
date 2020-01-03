@@ -33,24 +33,20 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
         static Action FindExecutable(string name, string command)
         {
-            Action run = null;
-            Action explain = null;
+            IExecutable executable = null;
 
             switch (name)
             {
                 case "isuniquestring":
-                    run = IsUniqueAscii.Run;
-                    explain = IsUniqueAscii.Explain;
+                    executable = new IsUniqueAscii();
                 break;
 
                 case "ispermutation":
-                    run = IsPermutationAscii.Run;
-                    explain = IsPermutationAscii.Explain;
+                    executable = new IsPermutationAscii();
                 break;
 
                 case "oneaway":
-                    run = OneAway.Run;
-                    explain = OneAway.Explain;
+                    executable = new OneAway();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
@@ -58,8 +54,8 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
             switch (command)
             {
-                case "explain": return explain;
-                case "run": return run;
+                case "explain": return executable.Explain;
+                case "run": return executable.Run;
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
         }
