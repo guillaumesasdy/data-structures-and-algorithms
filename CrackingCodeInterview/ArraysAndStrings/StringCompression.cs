@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace CrackingCodeInterview.ArraysAndStrings
 {
@@ -31,7 +32,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
             bool compressSmallestPassing = Compress("aaa") == "a3";
 
-            bool compressLastCharsPassing = Compress("abbbb") == "a1b3";
+            bool compressLastCharsPassing = Compress("abbbb") == "a1b4";
 
             bool compressHundredCharsPassing = Compress(new String('a', 100) + "b") == "a100b1";
 
@@ -46,7 +47,46 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
         string Compress(string s)
         {
-            throw new NotImplementedException();
+            if (s.Length < 3)
+                return s;
+
+            StringBuilder compressed = new StringBuilder();
+            int limit = s.Length;
+
+            char read = s[0];
+            int count = 0;
+            int idx = 0;
+            while (idx < s.Length)
+            {
+                if (s[idx] != read)
+                {
+                    if (AppendTo(compressed, read, count, limit) == false)
+                        return s;
+
+                    count = 1;
+                    read = s[idx];
+                }
+                else count++;
+
+                idx++;
+            }
+
+            // last flush
+            if (AppendTo(compressed, read, count, limit) == false)
+                return s;
+
+            return compressed.ToString();
+        }
+
+        bool AppendTo(StringBuilder sb, char c, int count, int limit)
+        {
+            sb.Append(c);
+            sb.Append(count.ToString());
+
+            if (sb.Length >= limit)
+                return false;
+            
+            return true;
         }
     }
 }
