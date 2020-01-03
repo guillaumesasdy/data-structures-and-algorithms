@@ -49,6 +49,10 @@ namespace CrackingCodeInterview.ArraysAndStrings
                     executable = new OneAway();
                 break;
 
+                case "stringcompression":
+                    executable = new StringCompression();
+                break;
+
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
 
