@@ -57,6 +57,10 @@ namespace CrackingCodeInterview.ArraysAndStrings
                     executable = new URLify();
                 break;
 
+                case "rotatematrix":
+                    executable = new RotateMatrix();
+                break;
+
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
 
