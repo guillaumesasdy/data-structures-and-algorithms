@@ -54,8 +54,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
                 break;
 
                 case "urlify":
-                    run = URLify.Run;
-                    explain = URLify.Explain;
+                    executable = new URLify();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");

@@ -1,11 +1,10 @@
 using System;
-using System.Diagnostics;
 
 namespace CrackingCodeInterview.ArraysAndStrings
 {
-    public class URLify
+    public class URLify : IExecutable
     {
-        public static void Explain()
+        public void Explain()
         {
             string s = "Replace space characters by the sequence '%20' in an array of chars." + Environment.NewLine;
             s += "The given array of chars must be changed in place, given the final length of the array.";
@@ -13,13 +12,13 @@ namespace CrackingCodeInterview.ArraysAndStrings
             Console.WriteLine(s);
         }
 
-        public static void Run()
+        public void Run()
         {
             bool URLifyInPlacePassing = Test();
             Console.WriteLine(nameof(URLifyInPlace) + " tests returns: " + URLifyInPlacePassing);
         }
 
-        private static bool Test()
+        private bool Test()
         {
             char[] empty = "".ToCharArray();
             URLifyInPlace(ref empty);
@@ -54,7 +53,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
         }
 
 
-        static void URLifyInPlace(ref char[] chars)
+        void URLifyInPlace(ref char[] chars)
         {
             // at least 3 chars are needed to store %20
             if (chars.Length < 3)
