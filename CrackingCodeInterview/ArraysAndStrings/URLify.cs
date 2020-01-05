@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace CrackingCodeInterview.ArraysAndStrings
 {
@@ -40,23 +41,51 @@ namespace CrackingCodeInterview.ArraysAndStrings
             URLifyInPlace(ref spaceAtEnd);
             string spaceAtEndExpectedResult = "ab%20";
 
+            char[] spaceBegAndEnd = " a     ".ToCharArray();
+            URLifyInPlace(ref spaceBegAndEnd);
+            string spaceBegAndEndExpectedResult = "%20a%20";
+
             return empty.ToString() == emptyExpectedResult
                 && noSpace.ToString() == noSpaceExpectedResult
                 && spaceInTheMiddle.ToString() == spaceInTheMiddleExpectedResult
                 && multipleSpacesAtBeginning.ToString() == multipleSpacesAtBeginningExpectedResult
-                && spaceAtEnd.ToString() == spaceAtEndExpectedResult;
+                && spaceAtEnd.ToString() == spaceAtEndExpectedResult
+                && spaceBegAndEnd.ToString() == spaceBegAndEndExpectedResult;
         }
+
 
         static void URLifyInPlace(ref char[] chars)
         {
-            for(int i=0; i<chars.Length; i++)
-            if (chars[i] == ' ')
+            // at least 3 chars are needed to store %20
+            if (chars.Length < 3)
+                return;
+
+            // first find the index of the "real" last character
+            int lastIdx = chars.Length - 1;
+            int i = -1;
+            do
             {
-                chars[i + 4] = chars[i + 2];
-                chars[i + 3] = chars[i + 1];
-                chars[i + 2] = '0';
-                chars[i + 1] = '2';
-                chars[i + 0] = '%';
+                i++;
+                if (chars[i] == ' ')
+                    lastIdx -= 2;
+            } while (i != lastIdx);
+
+            // then write in reverse direction the urlify string
+            int end = chars.Length - 1;
+            while (i >= 0)
+            {
+                if (chars[i] == ' ')
+                {
+                    chars[end] = '0';
+                    chars[end - 1] = '2';
+                    chars[end - 2] = '%';
+                    end -= 2;
+                }
+                else 
+                    chars[end] = chars[i];
+
+                i--;
+                end--;
             }
         }
     }
