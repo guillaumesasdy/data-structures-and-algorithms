@@ -1,4 +1,4 @@
-namespace CrackingCodeInterview.ArraysAndStrings
+namespace MySolutions.Common
 {
     public interface IExecutable
     {

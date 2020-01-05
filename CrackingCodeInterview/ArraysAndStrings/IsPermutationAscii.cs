@@ -1,6 +1,7 @@
 using System;
+using MySolutions.Common;
 
-namespace CrackingCodeInterview.ArraysAndStrings
+namespace MySolutions.CrackingCodeInterview.ArraysAndStrings
 {
     public class IsPermutationAscii : IExecutable
     {

@@ -1,6 +1,8 @@
 using System;
+using MySolutions.CrackingCodeInterview.ArraysAndStrings;
+using MySolutions.LeetCode;
 
-namespace CrackingCodeInterview.ArraysAndStrings
+namespace MySolutions.Common
 {
     public class Program
     {
@@ -59,6 +61,10 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
                 case "rotatematrix":
                     executable = new RotateMatrix();
+                break;
+
+                case "countvowelspermutation":
+                    executable = new CountVowelsPermutation();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");

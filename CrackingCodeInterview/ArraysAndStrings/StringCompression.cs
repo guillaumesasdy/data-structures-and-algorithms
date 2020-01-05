@@ -1,7 +1,8 @@
 using System;
 using System.Text;
+using MySolutions.Common;
 
-namespace CrackingCodeInterview.ArraysAndStrings
+namespace MySolutions.CrackingCodeInterview.ArraysAndStrings
 {
     public class StringCompression : IExecutable
     {
