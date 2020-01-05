@@ -72,7 +72,19 @@ namespace CrackingCodeInterview.ArraysAndStrings
 
         void RotateInPlace(ref int[,] m)
         {
-            return;
+            int n = m.GetLength(0);
+            int lastIdx = n - 1;
+            int maxDist = (int) (n / 2);
+            
+            for(int d=0; d<maxDist; d++)
+            for(int i=d; i<lastIdx-d; i++)
+            {
+                int tmp = m[d, i];
+                m[d, i] = m[lastIdx - i, d];
+                m[lastIdx - i, d] = m[lastIdx - d, lastIdx - i];
+                m[lastIdx - d, lastIdx - i] = m[i, lastIdx - d];
+                m[i, lastIdx - d] = tmp;
+            }
         }
     }
 }
