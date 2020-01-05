@@ -2,25 +2,25 @@ using System;
 
 namespace CrackingCodeInterview.ArraysAndStrings
 {
-    public class IsPermutationAscii
+    public class IsPermutationAscii : IExecutable
     {
         static readonly int NbAsciiChars = 128;
 
-        public static void Explain()
+        public void Explain()
         {
             string s = "Find if a two ASCII strings can be permuted.";
 
             Console.WriteLine(s);
         }
 
-        public static void Run()
+        public void Run()
         {
             bool isPermutationAsciiWithArrayOfIntegersPassing = Test();
             Console.WriteLine(nameof(IsPermutationAsciiWithArrayOfIntegers) + " tests returns: "
                 + isPermutationAsciiWithArrayOfIntegersPassing);
         }
 
-        private static bool Test()
+        bool Test()
         {
             bool twoNull = IsPermutationAsciiWithArrayOfIntegers(null, null);
             bool twoNullExpectedReturn = false;
@@ -44,7 +44,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
                 && sameCharacterCount == sameCharacterCountExpectedReturn;
         }
 
-        static bool IsPermutationAsciiWithArrayOfIntegers(string s1, string s2)
+        bool IsPermutationAsciiWithArrayOfIntegers(string s1, string s2)
         {
             if (s1 == null || s2 == null)
                 return false;

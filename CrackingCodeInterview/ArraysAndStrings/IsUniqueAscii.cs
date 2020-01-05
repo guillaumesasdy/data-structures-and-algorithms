@@ -2,18 +2,18 @@ using System;
 
 namespace CrackingCodeInterview.ArraysAndStrings
 {
-    public class IsUniqueAscii
+    public class IsUniqueAscii : IExecutable
     {
         static readonly int NbAsciiChars = 128;
 
-        public static void Explain()
+        public void Explain()
         {
             string s = "Find if a string contains only unique ASCII characters.";
 
             Console.WriteLine(s);
         }
 
-        public static void Run()
+        public void Run()
         {
             bool isUniqueAsciiWithArrayOfBoolsPassing = Test(IsUniqueAsciiWithArrayOfBools);
             Console.WriteLine($"{nameof(IsUniqueAsciiWithArrayOfBools)} tests returns: {isUniqueAsciiWithArrayOfBoolsPassing}");
@@ -22,7 +22,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
             Console.WriteLine($"{nameof(IsUniqueAsciiWithArrayOfBytes)} tests returns: {isUniqueAsciiWithArrayOfBytesPassing}");
         }
 
-        private static bool Test(Func<string, bool> tested)
+        bool Test(Func<string, bool> tested)
         {
             string allTheSame = "aaaaaaa";
             bool allTheSameExpectedReturn = false;
@@ -48,7 +48,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
                     == duplicatedNonAlphaNumericalCharactersExpectedReturn;
         }
 
-        static bool IsUniqueAsciiWithArrayOfBytes(string s)
+        bool IsUniqueAsciiWithArrayOfBytes(string s)
         {
             byte[] seen = new byte[NbAsciiChars / 8];
 
@@ -68,7 +68,7 @@ namespace CrackingCodeInterview.ArraysAndStrings
             return true;
         }
 
-        static bool IsUniqueAsciiWithArrayOfBools(string s)
+        bool IsUniqueAsciiWithArrayOfBools(string s)
         {
             bool[] seen = new bool[NbAsciiChars];
 
