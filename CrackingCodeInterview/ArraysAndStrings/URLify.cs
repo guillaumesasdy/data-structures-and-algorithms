@@ -44,12 +44,12 @@ namespace CrackingCodeInterview.ArraysAndStrings
             URLifyInPlace(ref spaceBegAndEnd);
             string spaceBegAndEndExpectedResult = "%20a%20";
 
-            return empty.ToString() == emptyExpectedResult
-                && noSpace.ToString() == noSpaceExpectedResult
-                && spaceInTheMiddle.ToString() == spaceInTheMiddleExpectedResult
-                && multipleSpacesAtBeginning.ToString() == multipleSpacesAtBeginningExpectedResult
-                && spaceAtEnd.ToString() == spaceAtEndExpectedResult
-                && spaceBegAndEnd.ToString() == spaceBegAndEndExpectedResult;
+            return string.Join("", empty) == emptyExpectedResult
+                && string.Join("", noSpace) == noSpaceExpectedResult
+                && string.Join("", spaceInTheMiddle) == spaceInTheMiddleExpectedResult
+                && string.Join("", multipleSpacesAtBeginning) == multipleSpacesAtBeginningExpectedResult
+                && string.Join("", spaceAtEnd) == spaceAtEndExpectedResult
+                && string.Join("", spaceBegAndEnd) == spaceBegAndEndExpectedResult;
         }
 
 
