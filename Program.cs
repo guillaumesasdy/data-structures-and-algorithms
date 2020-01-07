@@ -1,5 +1,6 @@
 using System;
 using MySolutions.CrackingCodeInterview.ArraysAndStrings;
+using MySolutions.CrackingCodeInterview.SinglyLinkedList;
 using MySolutions.LeetCode;
 
 namespace MySolutions.Common
@@ -65,6 +66,10 @@ namespace MySolutions.Common
 
                 case "countvowelspermutation":
                     executable = new CountVowelsPermutation();
+                break;
+
+                case "singlylinkedlist":
+                    executable = new SinglyLinkedList();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
