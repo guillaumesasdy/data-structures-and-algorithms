@@ -1,5 +1,6 @@
 using System;
 using MySolutions.CrackingCodeInterview.ArraysAndStrings;
+using MySolutions.CrackingCodeInterview.LinkedList;
 using MySolutions.CrackingCodeInterview.SinglyLinkedList;
 using MySolutions.LeetCode;
 
@@ -70,6 +71,10 @@ namespace MySolutions.Common
 
                 case "singlylinkedlist":
                     executable = new SinglyLinkedList();
+                break;
+
+                case "removedups":
+                    executable = new RemoveDups();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
