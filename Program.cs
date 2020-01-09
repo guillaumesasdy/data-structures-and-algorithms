@@ -77,6 +77,10 @@ namespace MySolutions.Common
                     executable = new RemoveDups();
                 break;
 
+                case "returnkthlast":
+                    executable = new ReturnKthLast();
+                break;
+
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
 
