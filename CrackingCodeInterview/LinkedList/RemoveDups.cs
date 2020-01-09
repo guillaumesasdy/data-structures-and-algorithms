@@ -83,14 +83,14 @@ namespace MySolutions.CrackingCodeInterview.LinkedList
 
             while (slow != null)
             {
-                var fast = slow.Next;
+                var fast = slow;
 
-                while (fast != null)
+                while (fast.Next != null)
                 {
-                    if (fast.Value == slow.Value)
-                        slow.Next = fast.Next;
-
-                    fast = fast.Next;
+                    if (fast.Next.Value == slow.Value)
+                        fast.Next = fast.Next.Next;
+                    else
+                        fast = fast.Next;
                 }
 
                 slow = slow.Next;
