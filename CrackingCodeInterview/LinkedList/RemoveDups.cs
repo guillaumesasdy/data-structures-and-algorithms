@@ -52,12 +52,49 @@ namespace MySolutions.CrackingCodeInterview.LinkedList
 
         void RemoveDupsWithHashtable(Node<char> head)
         {
-            throw new NotImplementedException();
+            if (head == null)
+                return;
+            
+            var seen = new bool[128];
+            seen[head.Value] = true;
+
+            var cursor = head.Next;
+            var previous = head;
+            while (cursor != null)
+            {
+                if (seen[cursor.Value])
+                    previous.Next = cursor.Next;
+                else
+                {
+                    seen[cursor.Value] = true;
+                    previous = cursor;
+                }
+
+                cursor = cursor.Next;
+            }
         }
 
         void RemoveDupsWithRunners(Node<char> head)
         {
-            throw new NotImplementedException();
+            if (head == null)
+                return;
+            
+            var slow = head;
+
+            while (slow != null)
+            {
+                var fast = slow.Next;
+
+                while (fast != null)
+                {
+                    if (fast.Value == slow.Value)
+                        slow.Next = fast.Next;
+
+                    fast = fast.Next;
+                }
+
+                slow = slow.Next;
+            }
         }
     }
 }
