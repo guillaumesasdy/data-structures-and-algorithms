@@ -34,7 +34,22 @@ namespace MySolutions.CrackingCodeInterview.LinkedList
 
         Node<char> ReturnKthLastWithRunners(Node<char> head, int k)
         {
-            throw new NotImplementedException();
+            var slow = head;
+            var fast = head;
+
+            while (k != 0)
+            {
+                fast = fast.Next;
+                k--;
+            }
+
+            while(fast != null)
+            {
+                fast = fast.Next;
+                slow = slow.Next;
+            }
+
+            return slow;
         }
     }
 }
