@@ -86,7 +86,7 @@ namespace MySolutions.Common
                 break;
 
                 case "partition":
-                    executable = new DeleteMiddleNode();
+                    executable = new Partition();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");

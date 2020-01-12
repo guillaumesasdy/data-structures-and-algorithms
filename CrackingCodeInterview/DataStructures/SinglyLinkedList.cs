@@ -49,13 +49,13 @@ namespace MySolutions.CrackingCodeInterview.SinglyLinkedList
             return firstCursor == null && secondCursor == null;
         }
 
-        public static void WriteLineInConsole<T>(in Node<T> head)
+        public static void WriteLineInConsole<T>(in Node<T> head, string separator = "")
         {
             var cursor = head;
 
             while(cursor != null)
             {
-                Console.Write(cursor.Value);
+                Console.Write(cursor.Value + separator);
 
                 cursor = cursor.Next;
             }
