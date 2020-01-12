@@ -35,7 +35,8 @@ namespace MySolutions.CrackingCodeInterview.LinkedList
 
         void DeleteMiddleNodeConstant(Node<char> middle)
         {
-            throw new NotImplementedException();
+            middle.Value = middle.Next.Value;
+            middle.Next = middle.Next.Next;
         }
     }
 }
