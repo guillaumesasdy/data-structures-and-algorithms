@@ -81,6 +81,10 @@ namespace MySolutions.Common
                     executable = new ReturnKthLast();
                 break;
 
+                case "deletemiddlenode":
+                    executable = new DeleteMiddleNode();
+                break;
+
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
 
