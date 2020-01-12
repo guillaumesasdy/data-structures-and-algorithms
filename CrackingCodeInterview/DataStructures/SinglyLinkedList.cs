@@ -49,6 +49,19 @@ namespace MySolutions.CrackingCodeInterview.SinglyLinkedList
             return firstCursor == null && secondCursor == null;
         }
 
+        public static void WriteLineInConsole<T>(in Node<T> head)
+        {
+            var cursor = head;
+
+            while(cursor != null)
+            {
+                Console.Write(cursor.Value);
+
+                cursor = cursor.Next;
+            }
+            Console.WriteLine();
+        }
+
         public void Explain()
         {
             Console.WriteLine("A singly linked list builder.");
@@ -57,16 +70,9 @@ namespace MySolutions.CrackingCodeInterview.SinglyLinkedList
         public void Run()
         {
             Node<int> list = Build(new [] { 1, 2, 1, 4 });
-            var cursor = list;
 
             Console.Write("build linked list from array { 1, 2, 3, 4 } have values: ");
-            while(cursor != null)
-            {
-                Console.Write(cursor.Value);
-
-                cursor = cursor.Next;
-            }
-            Console.WriteLine();
+            WriteLineInConsole(list);
 
             Node<int> same = Build(new [] { 1, 2, 1, 4 });
 
