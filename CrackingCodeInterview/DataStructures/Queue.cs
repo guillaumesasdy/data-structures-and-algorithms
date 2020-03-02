@@ -1,0 +1,55 @@
+using System;
+using MySolutions.Common;
+using MySolutions.CrackingCodeInterview.SinglyLinkedList;
+
+namespace MySolutions.CrackingCodeInterview.Queue
+{
+    public class Queue<T> : IExecutable
+    {
+        private Node<T> first;
+        
+        private Node<T> last;
+
+        public void Add(T value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Remove()
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Peek()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsEmpty()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Explain()
+        {
+            Console.WriteLine("A stack data structure.");
+        }
+
+        public void Run()
+        {
+            var q = new Queue<int>();
+            Console.WriteLine("a new queue should be empty: " + q.IsEmpty());
+
+            q.Add(3);
+            Console.WriteLine("adding 3 to the queue");
+            q.Add(5);
+            Console.WriteLine("adding 5 to the queue");
+            Console.WriteLine("the queue should not be empty anymore: "
+                + (q.IsEmpty() == false).ToString());
+            Console.WriteLine("peek returns: " + q.Peek());
+            Console.WriteLine("pop returns: " + q.Remove());
+            Console.WriteLine("pop returns: " + q.Remove());
+            Console.WriteLine("the stack should be empty again: " + q.IsEmpty());
+        }
+    }
+}

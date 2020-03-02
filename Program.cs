@@ -3,6 +3,7 @@ using MySolutions.CrackingCodeInterview.ArraysAndStrings;
 using MySolutions.CrackingCodeInterview.LinkedList;
 using MySolutions.CrackingCodeInterview.SinglyLinkedList;
 using MySolutions.CrackingCodeInterview.Stack;
+using MySolutions.CrackingCodeInterview.Queue;
 using MySolutions.LeetCode;
 
 namespace MySolutions.Common
@@ -92,6 +93,10 @@ namespace MySolutions.Common
 
                 case "stack":
                     executable = new Stack<int>();
+                break;
+
+                case "queue":
+                    executable = new Queue<int>();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
