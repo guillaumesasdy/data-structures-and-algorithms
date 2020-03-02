@@ -10,22 +10,33 @@ namespace MySolutions.CrackingCodeInterview.Stack
 
         public T Pop()
         {
-            throw new NotImplementedException();
+            if (top == null)
+                throw new InvalidOperationException("The stack is empty");
+            
+            var value = top.Value;
+            top = top.Next;
+            return value;
         }
 
         public void Push(T value)
         {
-            throw new NotImplementedException();
+            var pushed = new Node<T>();
+            pushed.Value = value;
+            pushed.Next = top;
+            top = pushed;
         }
 
         public T Peek()
         {
-            throw new NotImplementedException();
+            if (top == null)
+                throw new InvalidOperationException("The stack is empty.");
+            
+            return top.Value;
         }
 
         public bool IsEmpty()
         {
-            throw new NotImplementedException();
+            return top == null;
         }
 
         public void Explain()
