@@ -2,6 +2,7 @@ using System;
 using MySolutions.CrackingCodeInterview.ArraysAndStrings;
 using MySolutions.CrackingCodeInterview.LinkedList;
 using MySolutions.CrackingCodeInterview.SinglyLinkedList;
+using MySolutions.CrackingCodeInterview.Stack;
 using MySolutions.LeetCode;
 
 namespace MySolutions.Common
@@ -87,6 +88,10 @@ namespace MySolutions.Common
 
                 case "partition":
                     executable = new Partition();
+                break;
+
+                case "stack":
+                    executable = new Stack<int>();
                 break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
