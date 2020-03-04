@@ -14,32 +14,56 @@ namespace MySolutions.CrackingCodeInterview.Queue
         /// <summary>
         /// Left stack holds the values in the reverse order
         /// </summary>
-        private Stack<T> leftStack;
+        private Stack<T> leftStack = new Stack<T>();
 
         /// <summary>
         /// Right stack is a temporary data structure used to reverse the left stack
         /// It allows us to simulate the First-in First-out of a queue
         /// </summary>
-        private Stack<T> rightStack;
+        private Stack<T> rightStack = new Stack<T>();
 
         public void Add(T value)
         {
-            throw new NotImplementedException();
+            leftStack.Push(value);
         }
 
         public T Remove()
         {
-            throw new NotImplementedException();
+            if (leftStack.IsEmpty())
+                throw new InvalidOperationException();
+
+            PourOneStackIntoAnother(leftStack, rightStack);
+
+            var value = rightStack.Pop();
+
+            PourOneStackIntoAnother(rightStack, leftStack);
+
+            return value;
         }
 
         public T Peek()
         {
-            throw new NotImplementedException();
+            if (leftStack.IsEmpty())
+                throw new InvalidOperationException();
+
+            PourOneStackIntoAnother(leftStack, rightStack);
+
+            var value = rightStack.Peek(); // above and below are duplicated from Remove() code
+
+            PourOneStackIntoAnother(rightStack, leftStack);
+
+            return value;
+        }
+
+        private void PourOneStackIntoAnother(Stack<T> one, Stack<T> another)
+        {
+            while (one.IsEmpty() == false)
+                another.Push(one.Pop());
         }
 
         public bool IsEmpty()
         {
-            throw new NotImplementedException();
+            return leftStack.IsEmpty();
         }
 
         public void Explain()
