@@ -67,9 +67,9 @@ namespace MySolutions.CrackingCodeInterview.Queue
             Console.WriteLine("the queue should not be empty anymore: "
                 + (q.IsEmpty() == false).ToString());
             Console.WriteLine("peek returns: " + q.Peek());
-            Console.WriteLine("pop returns: " + q.Remove());
-            Console.WriteLine("pop returns: " + q.Remove());
-            Console.WriteLine("the stack should be empty again: " + q.IsEmpty());
+            Console.WriteLine("remove returns: " + q.Remove());
+            Console.WriteLine("remove returns: " + q.Remove());
+            Console.WriteLine("the queue should be empty again: " + q.IsEmpty());
         }
     }
 }

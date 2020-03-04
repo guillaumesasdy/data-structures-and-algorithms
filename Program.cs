@@ -1,9 +1,9 @@
 using System;
 using MySolutions.CrackingCodeInterview.ArraysAndStrings;
 using MySolutions.CrackingCodeInterview.LinkedList;
+using MySolutions.CrackingCodeInterview.Queue;
 using MySolutions.CrackingCodeInterview.SinglyLinkedList;
 using MySolutions.CrackingCodeInterview.Stack;
-using MySolutions.CrackingCodeInterview.Queue;
 using MySolutions.LeetCode;
 
 namespace MySolutions.Common
@@ -45,59 +45,63 @@ namespace MySolutions.Common
             {
                 case "isuniquestring":
                     executable = new IsUniqueAscii();
-                break;
+                    break;
 
                 case "ispermutation":
                     executable = new IsPermutationAscii();
-                break;
+                    break;
 
                 case "oneaway":
                     executable = new OneAway();
-                break;
+                    break;
 
                 case "stringcompression":
                     executable = new StringCompression();
-                break;
+                    break;
 
                 case "urlify":
                     executable = new URLify();
-                break;
+                    break;
 
                 case "rotatematrix":
                     executable = new RotateMatrix();
-                break;
+                    break;
 
                 case "countvowelspermutation":
                     executable = new CountVowelsPermutation();
-                break;
+                    break;
 
                 case "singlylinkedlist":
                     executable = new SinglyLinkedList();
-                break;
+                    break;
 
                 case "removedups":
                     executable = new RemoveDups();
-                break;
+                    break;
 
                 case "returnkthlast":
                     executable = new ReturnKthLast();
-                break;
+                    break;
 
                 case "deletemiddlenode":
                     executable = new DeleteMiddleNode();
-                break;
+                    break;
 
                 case "partition":
                     executable = new Partition();
-                break;
+                    break;
 
                 case "stack":
                     executable = new Stack<int>();
-                break;
+                    break;
 
                 case "queue":
                     executable = new Queue<int>();
-                break;
+                    break;
+
+                case "queuewithstacks":
+                    executable = new QueueWithStacks<int>();
+                    break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
