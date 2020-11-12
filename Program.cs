@@ -102,6 +102,10 @@ namespace MySolutions.Common
                 case "queuewithstacks":
                     executable = new QueueWithStacks<int>();
                     break;
+                
+                case "sumlists":
+                    executable = new SumLists();
+                    break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
