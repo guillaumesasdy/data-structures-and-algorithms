@@ -29,7 +29,7 @@ namespace MySolutions.CrackingCodeInterview.LinkedList
             var carry1 = List.Build(new [] { 9, 9 });
             var carry2 = List.Build(new [] { 9, 9 });
             var carryResult = SumListsReverse(carry1, carry2);
-            var carryExpectedResult = List.Build(new [] { 8, 8, 1 });
+            var carryExpectedResult = List.Build(new [] { 8, 9, 1 });
 
             var oneBigger1 = List.Build(new[] {1, 1, 1, 1});
             var oneBigger2 = List.Build(new[] {1});
@@ -49,7 +49,31 @@ namespace MySolutions.CrackingCodeInterview.LinkedList
 
         Node<int> SumListsReverse(Node<int> one, Node<int> two)
         {
-            return null;
+            Node<int> sum = null, sumHead = null;
+            int carry = 0;
+
+            while (one != null || two != null || carry != 0)
+            {
+                int oneValue = one?.Value ?? 0; // can be (int) one?.Value, because null => 0
+                int twoValue = two?.Value ?? 0;
+                int sumValue = oneValue + twoValue + carry;
+
+                carry = sumValue > 10 ? 1 : 0;
+
+                var add = new Node<int> {Value = sumValue % 10};
+
+                if (sum == null)
+                    sumHead = add;
+                else
+                    sum.Next = add;
+                
+                sum = add;
+
+                one = one?.Next;
+                two = two?.Next;
+            }
+
+            return sumHead;
         }
     }
 }
