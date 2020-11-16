@@ -106,6 +106,10 @@ namespace MySolutions.Common
                 case "sumlists":
                     executable = new SumLists();
                     break;
+                
+                case "intersection":
+                    executable = new Intersection();
+                    break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
