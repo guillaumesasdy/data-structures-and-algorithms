@@ -110,6 +110,10 @@ namespace MySolutions.Common
                 case "intersection":
                     executable = new Intersection();
                     break;
+                
+                case "detectloop":
+                    executable = new LoopDetection();
+                    break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
             }
