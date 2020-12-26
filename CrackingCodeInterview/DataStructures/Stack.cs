@@ -6,37 +6,37 @@ namespace MySolutions.CrackingCodeInterview.Stack
 {
     public class Stack<T> : IExecutable
     {
-        private Node<T> top;
+        protected Node<T> Top;
 
-        public T Pop()
+        public virtual T Pop()
         {
-            if (top == null)
+            if (Top == null)
                 throw new InvalidOperationException("The stack is empty");
             
-            var value = top.Value;
-            top = top.Next;
+            var value = Top.Value;
+            Top = Top.Next;
             return value;
         }
 
-        public void Push(T value)
+        public virtual void Push(T value)
         {
             var pushed = new Node<T>();
             pushed.Value = value;
-            pushed.Next = top;
-            top = pushed;
+            pushed.Next = Top;
+            Top = pushed;
         }
 
         public T Peek()
         {
-            if (top == null)
+            if (Top == null)
                 throw new InvalidOperationException("The stack is empty.");
             
-            return top.Value;
+            return Top.Value;
         }
 
         public bool IsEmpty()
         {
-            return top == null;
+            return Top == null;
         }
 
         public void Explain()

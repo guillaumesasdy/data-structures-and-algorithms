@@ -1,4 +1,5 @@
 using System;
+using MySolutions.Common.CrackingCodeInterview.StacksQueues;
 using MySolutions.CrackingCodeInterview.ArraysAndStrings;
 using MySolutions.CrackingCodeInterview.LinkedList;
 using MySolutions.CrackingCodeInterview.Queue;
@@ -113,6 +114,10 @@ namespace MySolutions.Common
                 
                 case "detectloop":
                     executable = new LoopDetection();
+                    break;
+                
+                case "stackmin":
+                    executable = new StackMin<int>();
                     break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
