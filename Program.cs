@@ -1,11 +1,14 @@
 using System;
 using MySolutions.Common.CrackingCodeInterview.StacksQueues;
+using MySolutions.Common.CSharp;
 using MySolutions.CrackingCodeInterview.ArraysAndStrings;
 using MySolutions.CrackingCodeInterview.LinkedList;
 using MySolutions.CrackingCodeInterview.Queue;
 using MySolutions.CrackingCodeInterview.SinglyLinkedList;
 using MySolutions.CrackingCodeInterview.Stack;
 using MySolutions.LeetCode;
+using MySolutions.Optimization;
+using MySolutions.Sorting;
 
 namespace MySolutions.Common
 {
@@ -118,6 +121,18 @@ namespace MySolutions.Common
                 
                 case "stackmin":
                     executable = new StackMin<int>();
+                    break;
+
+                case "quicksort":
+                    executable = new QuickSort();
+                    break;
+                
+                case "knapsack":
+                    executable = new KnapSack();
+                    break;
+                
+                case "delegates":
+                    executable = new Delegates();
                     break;
 
                 default: throw new NotSupportedException(name + " is not a valid name.");
