@@ -58,6 +58,35 @@ bool test_defang_ip_addr()
 	return passed;
 }
 
+std::vector<bool> kids_with_candies(std::vector<int>& candies, int extra_candies)
+{
+	int max_candies = 1; // constraint 1 <= candies[i] <= 100
+
+	for (int candy : candies)
+		if (candy > max_candies)
+			max_candies = candy;
+
+	std::vector<bool> can_have_most_candies(candies.size());
+
+	for (int i{ 0 }; i < can_have_most_candies.size(); i++)
+		can_have_most_candies[i] = (candies[i] + extra_candies) >= max_candies;
+
+	return can_have_most_candies;
+}
+
+bool test_kids_with_candies()
+{
+	bool passed = true;
+
+	std::vector<int> case_one{1};
+	passed &= kids_with_candies(case_one, 1) == std::vector<bool>{ true };
+
+	std::vector<int> case_two{2, 3, 5, 1, 3};
+	passed &= kids_with_candies(case_two, 3) == std::vector<bool>{true, true, true, false, true};
+
+	return passed;
+}
+
 std::string to_string(bool b)
 {
 	return b ? "true" : "false";
@@ -67,4 +96,5 @@ int main()
 {
 	std::cout << "Tests running sum 1D array passed: " << to_string(test_running_sum()) << std::endl;
 	std::cout << "Tests defanging IP address passed: " << to_string(test_defang_ip_addr()) << std::endl;
+	std::cout << "Tests kids with candies passed: " << to_string(test_kids_with_candies()) << std::endl;
 }
