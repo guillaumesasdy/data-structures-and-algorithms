@@ -117,6 +117,18 @@ std::vector<int> shuffle(std::vector<int>& nums, int n) {
 	return shuffled;
 }
 
+int num_identical_pairs(std::vector<int>& nums)
+{
+	int count{ 0 };
+	
+	for(int i{0}; i < nums.size(); i++)
+		for (int j{ i + 1 }; j < nums.size(); j++)
+			if (nums[i] == nums[j])
+				count++;
+
+	return count;
+}
+
 std::string to_string(bool b)
 {
 	return b ? "true" : "false";
