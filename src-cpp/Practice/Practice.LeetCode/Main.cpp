@@ -87,6 +87,36 @@ bool test_kids_with_candies()
 	return passed;
 }
 
+int maximum_wealth(std::vector<std::vector<int>>& accounts)
+{
+	int max_wealth{ 0 };
+
+	for (auto account : accounts)
+	{
+		int wealth{ 0 };
+		
+		for (int i{ 0 }; i < account.size(); i++)
+			wealth += account[i];
+
+		if (wealth > max_wealth)
+			max_wealth = wealth;
+	}
+
+	return max_wealth;
+}
+
+std::vector<int> shuffle(std::vector<int>& nums, int n) {
+	std::vector<int>shuffled(2 * n);
+
+	for(int i{0}; i < n; i++)
+	{
+		shuffled[2 * i] = nums[i];
+		shuffled[2 * i + 1] = nums[n + i];
+	}
+
+	return shuffled;
+}
+
 std::string to_string(bool b)
 {
 	return b ? "true" : "false";
