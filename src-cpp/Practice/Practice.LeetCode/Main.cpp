@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <array>
 
 // todo sag move function running_sum to a specific file
 
@@ -127,6 +128,20 @@ int num_identical_pairs(std::vector<int>& nums)
 				count++;
 
 	return count;
+}
+
+int num_jewels_in_stones(std::string jewels, std::string stones)
+{
+	auto nb_jewels{ 0 };
+	
+	std::array<char, 128> stones_counter{};
+	for (auto c : stones)
+		stones_counter[static_cast<int>(c)]++;
+
+	for (auto c : jewels)
+		nb_jewels += stones_counter[static_cast<int>(c)];
+
+	return nb_jewels;
 }
 
 std::string to_string(bool b)
