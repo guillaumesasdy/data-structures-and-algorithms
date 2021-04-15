@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <array>
 
@@ -144,6 +144,81 @@ int num_jewels_in_stones(std::string jewels, std::string stones)
 	return nb_jewels;
 }
 
+std::vector<int> smaller_numbers_than_current(std::vector<int>& nums)
+{
+	std::vector<int> counts(nums.size());
+	
+	for (int i{ 0 }; i < nums.size(); i++)
+		for (int j{ 0 }; j < nums.size(); j++)
+			if (nums[j] < nums[i])
+				counts[i]++;
+
+	return counts;
+}
+
+void smaller_numbers_than_current_faster_sub(
+	std::vector<int>& nums,
+	std::vector<int>& counter,
+	std::vector<int>& sub_indexes,
+	int bit_offset)
+{
+	if (bit_offset < 0 || sub_indexes.size() <= 1)
+		return;
+	
+	const int bit_comparison{ 1 << bit_offset };
+	
+	std::vector<int> match_indexes(0);
+	std::vector<int> left_indexes(0);
+
+	for (auto index : sub_indexes)
+		if ((nums[index] & bit_comparison) != 0)
+			match_indexes.push_back(index);
+		else
+			left_indexes.push_back(index);
+
+	if (left_indexes.empty())
+	{
+		smaller_numbers_than_current_faster_sub(nums, counter, sub_indexes, bit_offset - 1);
+		return;
+	}
+
+	for (auto index : match_indexes)
+		counter[index] += left_indexes.size();
+
+	smaller_numbers_than_current_faster_sub(nums, counter, left_indexes, bit_offset - 1);
+	smaller_numbers_than_current_faster_sub(nums, counter, match_indexes, bit_offset - 1);
+}
+
+std::vector<int> smaller_numbers_than_current_faster(std::vector<int>& nums)
+{
+	const int bit_offset{ 6 }; // max value 100 decimal, eq. to 1100100 binary, the highest bit is 7th, thus 6 offset from the first
+	std::vector<int> counter(nums.size());
+
+	std::vector<int> indexes(nums.size());
+	for (int i{ 0 }; i < indexes.size(); i++)
+		indexes[i] = i;
+
+	smaller_numbers_than_current_faster_sub(nums, counter, indexes, bit_offset);
+
+	return counter;
+}
+
+bool test_smaller_numbers_than_current_faster()
+{
+	bool passed = true;
+
+	std::vector<int> case_one{2, 1, 4};
+	passed &= smaller_numbers_than_current_faster(case_one) == std::vector<int>{1, 0, 2};
+
+	std::vector<int> case_two{ 2, 2, 1, 4, 4 };
+	passed &= smaller_numbers_than_current_faster(case_two) == std::vector<int>{1, 1, 0, 3, 3};
+
+	std::vector<int> case_three{ 100, 99, 98, 90, 91, 92, 93, 94 };
+	passed &= smaller_numbers_than_current_faster(case_three) == std::vector<int>{7, 6, 5, 0, 1, 2, 3, 4};
+
+	return passed;
+}
+
 std::string to_string(bool b)
 {
 	return b ? "true" : "false";
@@ -154,4 +229,5 @@ int main()
 	std::cout << "Tests running sum 1D array passed: " << to_string(test_running_sum()) << std::endl;
 	std::cout << "Tests defanging IP address passed: " << to_string(test_defang_ip_addr()) << std::endl;
 	std::cout << "Tests kids with candies passed: " << to_string(test_kids_with_candies()) << std::endl;
+	std::cout << "Tests smaller numbers than current: " << to_string(test_smaller_numbers_than_current_faster()) << std::endl;
 }
