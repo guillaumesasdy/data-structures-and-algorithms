@@ -219,6 +219,22 @@ bool test_smaller_numbers_than_current_faster()
 	return passed;
 }
 
+int array_sign(std::vector<int>& nums)
+{
+	int sign{1};
+
+	for (auto num : nums)
+	{
+		if (num == 0)
+			return 0;
+
+		if (num < 0)
+			sign *= -1;
+	}
+
+	return sign;
+}
+
 std::string to_string(bool b)
 {
 	return b ? "true" : "false";
