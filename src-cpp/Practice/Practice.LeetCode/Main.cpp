@@ -235,6 +235,20 @@ int array_sign(std::vector<int>& nums)
 	return sign;
 }
 
+std::string shuffle_string(std::string s, std::vector<int>& indices)
+{
+	std::vector<char> shuffled(s.size());
+
+	for (auto i{0}; i < s.size(); i++)
+	{
+		shuffled[indices[i]] = s[i];
+	}
+
+	std::string shuffled_string(shuffled.begin(), shuffled.end());
+	
+	return shuffled_string;
+}
+
 std::string to_string(bool b)
 {
 	return b ? "true" : "false";
