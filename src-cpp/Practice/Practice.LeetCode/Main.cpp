@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <array>
+#include <cmath>
 
 // todo sag move function running_sum to a specific file
 
@@ -249,6 +250,95 @@ std::string shuffle_string(std::string s, std::vector<int>& indices)
 	return shuffled_string;
 }
 
+double compute_distance(std::vector<int>& a, std::vector<int>& b)
+{
+	const auto x_diff = std::pow(a[0] - b[0], 2);
+	const auto y_diff = std::pow(a[1] - b[1], 2);
+	
+	return std::sqrt(x_diff + y_diff);
+}
+
+std::vector<int> count_points_in_circles_by_distance(
+	std::vector<std::vector<int>>& points, 
+	std::vector<std::vector<int>>& circles)
+{
+	std::vector<int> result{};
+
+	for(std::vector<int>& circle : circles)
+	{
+		std::vector<int> circle_center{circle[0], circle[1]};
+		int radius{ circle[2] };
+		
+		int inside_counter{ 0 };
+		for(std::vector<int>& point : points)
+		{
+			// no need for epsilon below, the precision is covered with test on edge cases
+			if (compute_distance(point, circle_center) <= radius)
+				inside_counter++;
+		}
+
+		result.push_back(inside_counter);
+	}
+
+	return result;
+}
+
+bool test_count_points_in_circles_by_distance()
+{
+	bool passed = true;
+
+	std::vector<std::vector<int>> case_one_points
+	{
+		{1, 3},
+		{3, 3},
+		{5, 3},
+		{2, 2},
+	};
+	std::vector<std::vector<int>> case_one_circles
+	{
+		{2, 3, 1},
+		{4, 3, 1},
+		{1, 1, 2}
+	};
+	std::vector<int> case_one_result_expected{3, 2, 2};
+	passed &= count_points_in_circles_by_distance(case_one_points, case_one_circles) == case_one_result_expected;
+
+	std::vector<std::vector<int>> case_two_points // one point for each edge cases: bottom left, top left, top right, bottom right
+	{
+		{0, 0},
+		{0, 500},
+		{500, 500},
+		{500, 0},
+	};
+	std::vector<std::vector<int>> case_two_circles
+	{
+		{250, 250, 500},
+		{0, 0, 500},
+		{0, 0, 499},
+		{0, 250, 250},
+		{0, 250, 249},
+		/* ... */
+		{500, 500, 500},
+		{250, 500, 250},
+		{250, 500, 249}
+	};
+	std::vector<int> case_two_result_expected{ 4, 3, 1, 2, 0, /* ... */ 3, 2, 0};
+	passed &= count_points_in_circles_by_distance(case_two_points, case_two_circles) == case_two_result_expected;
+
+	return passed;
+}
+
+std::vector<int> count_points_in_circles_with_map(
+	std::vector<std::vector<int>>& points,
+	std::vector<std::vector<int>>& circles)
+{
+	const size_t map_size{ 501 };
+
+	std::vector<int> result; // todo
+
+	return result;
+}
+
 std::string to_string(bool b)
 {
 	return b ? "true" : "false";
@@ -260,4 +350,5 @@ int main()
 	std::cout << "Tests defanging IP address passed: " << to_string(test_defang_ip_addr()) << std::endl;
 	std::cout << "Tests kids with candies passed: " << to_string(test_kids_with_candies()) << std::endl;
 	std::cout << "Tests smaller numbers than current: " << to_string(test_smaller_numbers_than_current_faster()) << std::endl;
+	std::cout << "Tests count points in circle by distance: " << to_string(test_count_points_in_circles_by_distance()) << std::endl;
 }
